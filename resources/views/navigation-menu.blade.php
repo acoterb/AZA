@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('LOGO.png') }}" style="max-width:50%;">
+                        <img src="{{ asset('LOGO.png') }}" class="block h-9 w-auto">
                     </a>
                 </div>
 
