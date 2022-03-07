@@ -114,23 +114,23 @@ class ClientesController extends Controller
 
     if($numConsecutivo <10)
     {
-        $poliza = "D°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-8)+2).$request->vendedor."-0000".intval($numConsecutivo+1);
+        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+).$request->vendedor."-0000".intval($numConsecutivo+1);
     }
     else if ($numConsecutivo >=10 && $numConsecutivo <100 )
      {
-               $poliza = "D°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-8)+2).$request->vendedor."-000".intval($numConsecutivo+1);
+               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-000".intval($numConsecutivo+1);
      }
          else if ($numConsecutivo >=100 && $numConsecutivo <1000 )
      {
-               $poliza = "D°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-8)+2).$request->vendedor."-00".intval($numConsecutivo+1);
+               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-00".intval($numConsecutivo+1);
      }
          else if ($numConsecutivo >=1000 && $numConsecutivo <10000 )
      {
-               $poliza = "D°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-8)+2).$request->vendedor."-0".intval($numConsecutivo+1);
+               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0".intval($numConsecutivo+1);
      }
      else
      {
-        $poliza = "D°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-8)+2).$request->vendedor."-".intval($numConsecutivo+1);
+        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-".intval($numConsecutivo+1);
      }
 
      
