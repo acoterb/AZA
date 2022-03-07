@@ -114,7 +114,7 @@ class ClientesController extends Controller
 
     if($numConsecutivo <10)
     {
-        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+).$request->vendedor."-0000".intval($numConsecutivo+1);
+        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0000".intval($numConsecutivo+1);
     }
     else if ($numConsecutivo >=10 && $numConsecutivo <100 )
      {
