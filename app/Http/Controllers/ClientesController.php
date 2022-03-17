@@ -105,11 +105,20 @@ class ClientesController extends Controller
 //dd($request->fechaInicio);
     $ultimaPoliza =  new Contratos();
     $ultimaPoliza = $ultimaPoliza->all();
-    $ultimaPoliza = $ultimaPoliza->last();
+
+    if(count($ultimaPoliza) > 0)
+    {
+       $ultimaPoliza = $ultimaPoliza->last();
     $ultimaPoliza = $ultimaPoliza->poliza;
     $tamañoPoliza =  strlen($ultimaPoliza);
 
     $numConsecutivo = intval(substr($ultimaPoliza, $tamañoPoliza-5));
+    }
+    else
+    {
+      $numConsecutivo = 0;
+    }
+   
 
 
     if($numConsecutivo <10)
