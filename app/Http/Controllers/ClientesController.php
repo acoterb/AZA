@@ -242,8 +242,9 @@ class ClientesController extends Controller
           $contrato = Contratos::findorfail($id);
           $cliente = Cliente::where('id', $contrato->cliente_id)->first();
           $direccion = Direccion::where('id',$cliente->direccions_id)->first();
+          $pagos = Pagos::where('contrato_id',$contrato->id)->first();
 
-          return view('clientes.show',compact('contrato','direccion'));
+          return view('clientes.show',compact('contrato','direccion','pagos'));
     }
 
 
