@@ -65,10 +65,22 @@
               <div class="col-md-4">
               <label for="plazo">Plazo</label>
               <select id="plazo" name="plazo" class="form-control">
+                <option value="0.5">6 meses</option>
                 <option value="1">1 año</option>
                 <option value="2">2 año</option>
                 <option value="3">3 año</option>
                 <option value="4">4 año</option>
+          </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="formaPago">Forma de pago</label>
+              <select id="formaPago" name="formaPago" class="form-control">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Deposito">Deposito</option>
+                <option value="Oficina">Oficina</option>
+                
           </select>
             </div>
 
@@ -81,17 +93,18 @@
 
           </select>
             </div>
-                <div class="col-md-4">
+                {{--<div class="col-md-4">
               <label for="navideno">Navideño</label>
               <select id="navideno" name="navideno" class="form-control">
                 <option value="0">No</option>
                 <option value="1">Si</option>
           </select>
-            </div>
+            </div>--}}
             <div class="col-md-4">
               <label for="plazo de pagos">Plazo de pagos</label>
               <select id="plazoP" name="plazoP" class="form-control">
                 <option value="1">De contado</option>
+                <option value="3">3 pagos</option>
                 <option selected value="4">4 pagos</option>
           </select>
             </div>

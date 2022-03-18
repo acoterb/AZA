@@ -292,11 +292,45 @@
               <div class="col-md-4">
               <label for="plazo">Plazo</label>
               <select id="plazo" name="plazo" class="form-control">
+                @if($cliente->plazo <1)
+                <option value="0.5">6 meses</option>
+                @else
+
                 <option value="{{$cliente->plazo}}">{{$cliente->plazo}} año</option>
+                @endif
+                <option value="0.5">6 meses</option>
                 <option value="1">1 año</option>
                 <option value="2">2 año</option>
                 <option value="3">3 año</option>
                 <option value="4">4 año</option>
+          </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="formaPago">Forma de pago</label>
+              <select id="formaPago" name="formaPago" class="form-control">
+                @if($pagos->forma_pago == 'Efectivo')
+                <option  selected value="Efectivo">Efectivo</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Deposito">Deposito</option>
+                <option value="Oficina">Oficina</option>
+                @elseif($pagos->forma_pago == 'Tarjeta')
+                <option   value="Efectivo">Efectivo</option>
+                <option selected value="Tarjeta">Tarjeta</option>
+                <option value="Deposito">Deposito</option>
+                <option value="Oficina">Oficina</option>
+                @elseif($pagos->forma_pago == 'Deposito')
+                <option  value="Efectivo">Efectivo</option>
+                <option  value="Tarjeta">Tarjeta</option>
+                <option  selected value="Deposito">Deposito</option>
+                <option  value="Oficina">Oficina</option>
+                @else
+                <option  value="Efectivo">Efectivo</option>
+                <option  value="Tarjeta">Tarjeta</option>
+                <option  value="Deposito">Deposito</option>
+                <option  selected value="Oficina">Oficina</option>
+                @endif
+                
           </select>
             </div>
                <div class="col-md-4">
@@ -329,7 +363,7 @@
                 @endif
           </select>
             </div>
-                        <div class="col-md-4">
+                {{--<div class="col-md-4">
               <label for="navideno">Navideño</label>
               <select id="navideno" name="navideno" class="form-control">
                 @if($cliente->navidena == '0')
@@ -342,15 +376,22 @@
                 @endif
           </select>
             </div>
+            --}}
             <div class="col-md-4">
               <label for="plazo de pagos">Plazo de pagos</label>
               <select id="plazoP" name="plazoP" class="form-control">
                 @if($pagos->numeropagos == 1)
                 <option value="1">De contado</option>
-                <option value="2">4 pagos</option>
+                <option value="3">3 pagos</option>
+                <option value="4">4 pagos</option>
+                @elseif($pagos->numeropagos == 3)
+                <option value="1">De contado</option>
+                <option selected value="3">3 pagos</option>
+                <option  value="4">4 pagos</option>
                 @else
                 <option value="1">De contado</option>
-                <option selected="" value="2">4 pagos</option>
+                <option  value="3">3 pagos</option>
+                <option selected value="4">4 pagos</option>
                 @endif
 
           </select>

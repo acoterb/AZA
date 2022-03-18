@@ -184,7 +184,7 @@ class ClientesController extends Controller
 
       $contrato = new Contratos();
       $contrato ->status_id = $request->status;
-      $contrato ->navidena = $request->navideno;
+      //$contrato ->navidena = $request->navideno;
       $contrato ->poliza = $poliza;
       $contrato ->vehiculo_id = $vehiculo->id;
       $contrato ->tipo = $request->tipoPoliza;
@@ -205,6 +205,7 @@ class ClientesController extends Controller
 
       $pago = new Pagos();
       $pago ->contrato_id = $contrato->id;
+      $pago ->forma_pago = $request->formaPago;
       $pago ->pagoinicial = $request->fechaPrimerPago;
       $pago ->numeropagos = $request->plazoP;
       $pago ->costoservicio = $request->precio;
@@ -388,7 +389,7 @@ class ClientesController extends Controller
       $contrato ->plazo = $request->plazo;
       $contrato ->desde = $request->fechaInicio;
       $contrato ->hasta = $request->hasta;
-      $contrato ->navidena = $request->navideno;
+     // $contrato ->navidena = $request->navideno;
       $contrato ->observaciones = $request->observaciones;
       $contrato ->observacion_privada = $request->observacionesPrivada;
       $contrato->ultimo_usuario_modifico = Auth::user()->id;
