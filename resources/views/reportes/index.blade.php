@@ -35,7 +35,7 @@
                     </button>
                 </td>
               </tr>
-
+              {{-- 
                <tr >
                 <td>2</td>
                 <td>Reporte cobros por fecha</td>
@@ -48,6 +48,7 @@
                      </a>
                 </td>
               </tr>
+              --}}
                     <tr >
                 <td>3</td>
                 <td>Reporte de ventas por semana</td>

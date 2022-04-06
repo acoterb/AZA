@@ -595,7 +595,7 @@ class ClientesController extends Controller
       }
 
 
-      $pago ->pagosrealizados = count(Pagos_detalle::where('pago_id',$pago->id)->get());
+      $pago ->pagosrealizados = count(Pagos_detalle::where('pago_id',$pago->id)->where('cantidad','>',0)->get());
       $pago ->pagoinicial = $request->pagoInicial;
       $pago ->numeropagos = $request->numPagos;
 
