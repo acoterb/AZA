@@ -99,49 +99,32 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
- {
-
-//dd($request->fechaInicio);
+    {
+    
+    //dd($request->fechaInicio);
     $ultimaPoliza =  new Contratos();
     $ultimaPoliza = $ultimaPoliza->all();
 
-    if(count($ultimaPoliza) > 0)
-    {
-       $ultimaPoliza = $ultimaPoliza->last();
-    $ultimaPoliza = $ultimaPoliza->poliza;
-    $tamañoPoliza =  strlen($ultimaPoliza);
-
-    $numConsecutivo = intval(substr($ultimaPoliza, $tamañoPoliza-5));
-    }
-    else
-    {
+    if(count($ultimaPoliza) > 0){
+        $ultimaPoliza = $ultimaPoliza->last();
+        $ultimaPoliza = $ultimaPoliza->poliza;
+        $tamañoPoliza =  strlen($ultimaPoliza);
+        $numConsecutivo = intval(substr($ultimaPoliza, $tamañoPoliza-5));
+    }else{
       $numConsecutivo = 0;
     }
-   
 
-
-    if($numConsecutivo <10)
-    {
+    if($numConsecutivo <10){
         $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0000".intval($numConsecutivo+1);
-    }
-    else if ($numConsecutivo >=10 && $numConsecutivo <100 )
-     {
-               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-000".intval($numConsecutivo+1);
-     }
-         else if ($numConsecutivo >=100 && $numConsecutivo <1000 )
-     {
-               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-00".intval($numConsecutivo+1);
-     }
-         else if ($numConsecutivo >=1000 && $numConsecutivo <10000 )
-     {
-               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0".intval($numConsecutivo+1);
-     }
-     else
-     {
+    }else if ($numConsecutivo >=10 && $numConsecutivo <100 ){
+        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-000".intval($numConsecutivo+1);
+    }else if ($numConsecutivo >=100 && $numConsecutivo <1000 ){
+        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-00".intval($numConsecutivo+1);
+    }else if ($numConsecutivo >=1000 && $numConsecutivo <10000 ){
+        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0".intval($numConsecutivo+1);
+    }else{
         $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-".intval($numConsecutivo+1);
-     }
-
+    }
      
       $direccion = new Direccion();
       $direccion ->calle = $request->calle;
@@ -201,8 +184,6 @@ class ClientesController extends Controller
       $contrato->usuario_creo = Auth::user()->id;
       $contrato -> save();
 
-
-
       $pago = new Pagos();
       $pago ->contrato_id = $contrato->id;
       $pago ->forma_pago = $request->formaPago;
@@ -218,17 +199,16 @@ class ClientesController extends Controller
       $pagoDetalle->usuario_creo = Auth::user()->id;
       $pagoDetalle ->save();
 
-    for($i = 1 ; $i <= $request->plazoP; $i++)
-    {
+    for($i = 1 ; $i <= $request->plazoP; $i++){
       $pagoFecha = new Pagos_fecha();
       $pagoFecha ->contrato_id = $contrato->id;
       $pagoFecha ->num_pago = $i;
       $pagoFecha ->fecha_pago = date("Y-m-d",strtotime($request->fechaInicio."+".$i." month"));
       $pagoFecha ->usuario_id = 0;
       $pagoFecha ->save();
-
     }
-              return redirect('cliente');
+
+    return redirect('cliente');
     }
 
     /**
@@ -296,9 +276,6 @@ class ClientesController extends Controller
      */
     public function edit($id)
     {
-
-
-
       $cliente = Contratos::findorfail($id);
       $clientes = Cliente::findorfail($cliente->cliente_id);
       $pagos = Pagos::where('contrato_id',$cliente->id)->first();
@@ -306,23 +283,36 @@ class ClientesController extends Controller
       $pagosDetalle2 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','2')->first();
       $pagosDetalle3 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','3')->first();
       $pagosDetalle4 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','4')->first();
+      $pagosDetalle5 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','5')->first();
+      $pagosDetalle6 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','6')->first();
+      $pagosDetalle7 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','7')->first();
+      $pagosDetalle8 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','8')->first();
+      $pagosDetalle9 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','9')->first();
+      $pagosDetalle10 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','10')->first();
+      $pagosDetalle11 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','11')->first();
+      $pagosDetalle12 = Pagos_detalle::where('pago_id',$pagos->id)->where('num_pago','12')->first();
 
       $pagosFecha1 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','1')->first();
       $pagosFecha2 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','2')->first();
       $pagosFecha3 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','3')->first();
       $pagosFecha4 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','4')->first();
+      $pagosFecha5 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','5')->first();
+      $pagosFecha6 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','6')->first();
+      $pagosFecha7 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','7')->first();
+      $pagosFecha8 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','8')->first();
+      $pagosFecha9 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','9')->first();
+      $pagosFecha10 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','10')->first();
+      $pagosFecha11 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','11')->first();
+      $pagosFecha12 = Pagos_fecha::where('contrato_id',$cliente->id)->where('num_pago','12')->first();
        $vendedor = new Vendedore();
       $vendedor = $vendedor->all();
       $cobrador = new Cobradore();
       $cobrador = $cobrador->all();
 
       $grua = Grua::where('contrato_id',$cliente->id)->first();
-      if($grua == null)
-      {
-        $grua = new Grua;
-      }
+      if($grua == null){  $grua = new Grua;  }
 
-       return view('clientes.edit',compact('vendedor','cobrador','cliente','clientes','pagos','pagosDetalle1','pagosDetalle2','pagosDetalle3','pagosDetalle4','grua','pagosFecha1','pagosFecha2','pagosFecha3','pagosFecha4'));
+       return view('clientes.edit',compact('vendedor','cobrador','cliente','clientes','pagos','pagosDetalle1','pagosDetalle2','pagosDetalle3','pagosDetalle4', 'pagosDetalle5', 'pagosDetalle6', 'pagosDetalle7', 'pagosDetalle8', 'pagosDetalle9', 'pagosDetalle10', 'pagosDetalle11', 'pagosDetalle12', 'grua','pagosFecha1','pagosFecha2','pagosFecha3','pagosFecha4', 'pagosFecha5', 'pagosFecha6', 'pagosFecha7', 'pagosFecha8', 'pagosFecha9', 'pagosFecha10', 'pagosFecha11', 'pagosFecha12'));
     }
 
     /**
@@ -334,17 +324,11 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
       $contrato = Contratos::findorfail($id);
-
-
-
-
       $contrato ->status_id = $request->status;
       $contrato ->poliza = $request->poliza;
 
-       $vehiculo = Vehiculos::findorfail($contrato->vehiculo_id);
-
+      $vehiculo = Vehiculos::findorfail($contrato->vehiculo_id);
       $vehiculo ->marca = $request->marca;
       $vehiculo ->submarca = $request->submarca;
       $vehiculo ->tipo = $request->tipo;
@@ -362,7 +346,6 @@ class ClientesController extends Controller
       $contrato ->cobrador_id = $request->cobrador;
       $contrato ->vendedor_id = $request->vendedor;
 
-
       $cliente =  Cliente::findorfail($contrato ->cliente_id);
       $cliente ->nombres = $request->nombre;
       $cliente ->apellidos = $request->Apellidos;
@@ -370,14 +353,13 @@ class ClientesController extends Controller
       $cliente ->telefono_emergencia = $request->telefono_emergencia;
       $cliente ->save();
 
-       $direccion = Direccion::findorfail($cliente ->direccions_id);
+      $direccion = Direccion::findorfail($cliente ->direccions_id);
       $direccion ->calle = $request->calle;
       $direccion ->colonia = $request->colonia;
       $direccion ->cruzes = $request->cruzes;
       $direccion ->estado = $request->estadoDireccion;
       $direccion ->ciudad = $request->ciudad;
       $direccion ->save();
-
 
       $licencia = Licencia::findorfail($contrato ->licencia_id);
       $licencia ->nlicencia = $request->licencia;
@@ -396,134 +378,237 @@ class ClientesController extends Controller
       $contrato -> save();
 
       $grua = Grua::where('contrato_id',$contrato->id)->first();
-       if ($grua == null)
-    {
-        $grua = new Grua();
+    if ($grua == null){
+      $grua = new Grua();
       $grua ->contrato_id = $contrato->id;
       $grua ->disponible = $request->disponible_grua;
       $grua ->fecha_uso = $request->fecha_uso;
       $grua ->lugar_compustura = $request->lugar_compustura;
       $grua ->lugar_arribo = $request->lugar_arribo;
       $grua ->save();
-    }
-    else
-    {
-
+    }else{
       $grua ->disponible = $request->disponible_grua;
       $grua ->fecha_uso = $request->fecha_uso;
       $grua ->lugar_compustura = $request->lugar_compustura;
       $grua ->lugar_arribo = $request->lugar_arribo;
       $grua ->save();
     }
-
-
       $pago = Pagos::where('contrato_id', $contrato->id)->first();
       $pago ->numeropagos = $request->plazoP;
       $pago ->costoservicio = $request->costo;
 
-    if($request->pago1FechaPropuesta)
-    {
+    if($request->pago1FechaPropuesta){
      $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','1')->first();
-     if($pagoFecha)
-     {
-     $pagoFecha ->fecha_pago = $request->pago1FechaPropuesta;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
-
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago1FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago1FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 1;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
      }
-     else
-     {
-     $pagoFecha =  new Pagos_fecha();
-     $pagoFecha ->fecha_pago = $request->pago1FechaPropuesta;
-     $pagoFecha ->contrato_id = $contrato->id;
-     $pagoFecha ->num_pago = 1;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
-    }
     }
 
-    if($request->pago2FechaPropuesta)
-    {
+    if($request->pago2FechaPropuesta){
      $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','2')->first();
-     if($pagoFecha)
-     {
-     $pagoFecha ->fecha_pago = $request->pago2FechaPropuesta;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago2FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago2FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 2;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
      }
-     else
-    {
-    $pagoFecha =  new Pagos_fecha();
-     $pagoFecha ->fecha_pago = $request->pago2FechaPropuesta;
-     $pagoFecha ->contrato_id = $contrato->id;
-     $pagoFecha ->num_pago = 2;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
-    }
     }
 
-        if($request->pago3FechaPropuesta)
-    {
+    if($request->pago3FechaPropuesta){
      $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','3')->first();
-          if($pagoFecha)
-     {
-     $pagoFecha ->fecha_pago = $request->pago3FechaPropuesta;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
+     if($pagoFecha){
+     $pagoFecha->fecha_pago = $request->pago3FechaPropuesta;
+     $pagoFecha->usuario_id = Auth::user()->id;
+     $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago3FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 3;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
      }
-     else
-    {
-    $pagoFecha =  new Pagos_fecha();
-     $pagoFecha ->fecha_pago = $request->pago3FechaPropuesta;
-     $pagoFecha ->contrato_id = $contrato->id;
-     $pagoFecha ->num_pago = 3;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
-    }
     }
 
-        if($request->pago4FechaPropuesta)
-    {
+    if($request->pago4FechaPropuesta){
      $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','4')->first();
-          if($pagoFecha)
-     {
-     $pagoFecha ->fecha_pago = $request->pago4FechaPropuesta;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago4FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago4FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 4;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
      }
-     else
-    {
-    $pagoFecha =  new Pagos_fecha();
-     $pagoFecha ->fecha_pago = $request->pago4FechaPropuesta;
-     $pagoFecha ->contrato_id = $contrato->id;
-     $pagoFecha ->num_pago = 4;
-     $pagoFecha ->usuario_id =   Auth::user()->id;
-     $pagoFecha ->save();
-    }
     }
 
+    if($request->pago5FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','5')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago5FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago5FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 5;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
 
+    if($request->pago6FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','6')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago6FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago6FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 6;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
 
+    if($request->pago7FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','7')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago7FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago7FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 7;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
+
+    if($request->pago8FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','8')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago8FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago8FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 8;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
+
+    if($request->pago9FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','9')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago9FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago9FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 9;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
+
+    if($request->pago10FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','10')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago10FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago10FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 10;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
+
+    if($request->pago11FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','11')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago11FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago11FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 11;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
+
+    if($request->pago12FechaPropuesta){
+     $pagoFecha =  Pagos_fecha::where('contrato_id',$contrato->id)->where('num_pago','12')->first();
+     if($pagoFecha){
+        $pagoFecha->fecha_pago = $request->pago12FechaPropuesta;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }else{
+        $pagoFecha =  new Pagos_fecha();
+        $pagoFecha->fecha_pago = $request->pago12FechaPropuesta;
+        $pagoFecha->contrato_id = $contrato->id;
+        $pagoFecha->num_pago = 12;
+        $pagoFecha->usuario_id = Auth::user()->id;
+        $pagoFecha->save();
+     }
+    }
 
       $pagosDetalle1 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','1')->first();
       $pagosDetalle2 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','2')->first();
       $pagosDetalle3 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','3')->first();
       $pagosDetalle4 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','4')->first();
+      $pagosDetalle5 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','5')->first();
+      $pagosDetalle6 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','6')->first();
+      $pagosDetalle7 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','7')->first();
+      $pagosDetalle8 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','8')->first();
+      $pagosDetalle9 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','9')->first();
+      $pagosDetalle10 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','10')->first();
+      $pagosDetalle11 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','11')->first();
+      $pagosDetalle12 = Pagos_detalle::where('pago_id',$pago->id)->where('num_pago','12')->first();
 
-
-      if($pagosDetalle1)
-      {
+      if($pagosDetalle1){
         $pagosDetalle1->fecha_pago = $request->pago1Fecha;
         $pagosDetalle1->cantidad = $request->pago1Cantidad;
         $pagosDetalle1->concepto = $request->concepto1;
         $pagosDetalle1->ultimo_usuario_modifico = Auth::user()->id;
         $pagosDetalle1->save();
-      }
-      else if(!$pagosDetalle1 && $request->pago1 == 1)
-      {
-
-
-
+      }else if(!$pagosDetalle1 && $request->pago1 == 1){
         $pagosDetalle1 = new Pagos_detalle();
         $pagosDetalle1->pago_id = $pago->id;
         $pagosDetalle1->num_pago = 1;
@@ -532,80 +617,190 @@ class ClientesController extends Controller
         $pagosDetalle1->concepto = $request->concepto1;
         $pagosDetalle1->usuario_creo = Auth::user()->id;
         $pagosDetalle1->save();
-
       }
-       if($pagosDetalle2)
-      {
+       if($pagosDetalle2){
         $pagosDetalle2->fecha_pago = $request->pago2Fecha;
         $pagosDetalle2->cantidad = $request->pago2Cantidad;
         $pagosDetalle2->concepto = $request->concepto2;
         $pagosDetalle2->ultimo_usuario_modifico = Auth::user()->id;
         $pagosDetalle2->save();
-      }
-      else if(!$pagosDetalle2 && $request->pago2 == 1)
-      {
+      }else if(!$pagosDetalle2 && $request->pago2 == 1){
         $pagosDetalle2 = new Pagos_detalle();
         $pagosDetalle2->pago_id = $pago->id;
         $pagosDetalle2->num_pago = 2;
         $pagosDetalle2->fecha_pago = $request->pago2Fecha;
         $pagosDetalle2->cantidad = $request->pago2Cantidad;
         $pagosDetalle2->concepto = $request->concepto2;
-        $pagosDetalle2 ->usuario_creo = Auth::user()->id;
+        $pagosDetalle2->usuario_creo = Auth::user()->id;
         $pagosDetalle2->save();
       }
-
-      if($pagosDetalle3)
-      {
+      if($pagosDetalle3){
         $pagosDetalle3->fecha_pago = $request->pago3Fecha;
         $pagosDetalle3->cantidad = $request->pago3Cantidad;
         $pagosDetalle3->concepto = $request->concepto3;
-        $pagosDetalle3 ->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle3->ultimo_usuario_modifico = Auth::user()->id;
         $pagosDetalle3->save();
-      }
-      else if(!$pagosDetalle3 && $request->pago3 == 1)
-      {
+      }else if(!$pagosDetalle3 && $request->pago3 == 1){
         $pagosDetalle3 = new Pagos_detalle();
         $pagosDetalle3->pago_id = $pago->id;
         $pagosDetalle3->num_pago = 3;
         $pagosDetalle3->fecha_pago = $request->pago3Fecha;
         $pagosDetalle3->cantidad = $request->pago3Cantidad;
         $pagosDetalle3->concepto = $request->concepto3;
-        $pagosDetalle3 ->usuario_creo = Auth::user()->id;
+        $pagosDetalle3->usuario_creo = Auth::user()->id;
         $pagosDetalle3->save();
       }
-
-      if($pagosDetalle4)
-      {
+      if($pagosDetalle4){
         $pagosDetalle4->fecha_pago = $request->pago4Fecha;
         $pagosDetalle4->cantidad = $request->pago4Cantidad;
         $pagosDetalle4->concepto = $request->concepto4;
-        $pagosDetalle4 ->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle4->ultimo_usuario_modifico = Auth::user()->id;
         $pagosDetalle4->save();
-      }
-      else if(!$pagosDetalle4 && $request->pago4 == 1)
-      {
+      }else if(!$pagosDetalle4 && $request->pago4 == 1){
         $pagosDetalle4 = new Pagos_detalle();
         $pagosDetalle4->pago_id = $pago->id;
         $pagosDetalle4->num_pago = 4;
         $pagosDetalle4->fecha_pago = $request->pago4Fecha;
         $pagosDetalle4->cantidad = $request->pago4Cantidad;
         $pagosDetalle4->concepto = $request->concepto4;
-        $pagosDetalle4 ->usuario_creo = Auth::user()->id;
+        $pagosDetalle4->usuario_creo = Auth::user()->id;
         $pagosDetalle4->save();
       }
-
+      if($pagosDetalle5){
+        $pagosDetalle5->fecha_pago = $request->pago5Fecha;
+        $pagosDetalle5->cantidad = $request->pago5Cantidad;
+        $pagosDetalle5->concepto = $request->concepto5;
+        $pagosDetalle5->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle5->save();
+      }else if(!$pagosDetalle5 && $request->pago5 == 1){
+        $pagosDetalle5 = new Pagos_detalle();
+        $pagosDetalle5->pago_id = $pago->id;
+        $pagosDetalle5->num_pago = 5;
+        $pagosDetalle5->fecha_pago = $request->pago5Fecha;
+        $pagosDetalle5->cantidad = $request->pago5Cantidad;
+        $pagosDetalle5->concepto = $request->concepto5;
+        $pagosDetalle5->usuario_creo = Auth::user()->id;
+        $pagosDetalle5->save();
+      }
+      if($pagosDetalle6){
+        $pagosDetalle6->fecha_pago = $request->pago6Fecha;
+        $pagosDetalle6->cantidad = $request->pago6Cantidad;
+        $pagosDetalle6->concepto = $request->concepto6;
+        $pagosDetalle6->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle6->save();
+      }else if(!$pagosDetalle6 && $request->pago6 == 1){
+        $pagosDetalle6 = new Pagos_detalle();
+        $pagosDetalle6->pago_id = $pago->id;
+        $pagosDetalle6->num_pago = 6;
+        $pagosDetalle6->fecha_pago = $request->pago6Fecha;
+        $pagosDetalle6->cantidad = $request->pago6Cantidad;
+        $pagosDetalle6->concepto = $request->concepto6;
+        $pagosDetalle6->usuario_creo = Auth::user()->id;
+        $pagosDetalle6->save();
+      }
+      if($pagosDetalle7){
+        $pagosDetalle7->fecha_pago = $request->pago7Fecha;
+        $pagosDetalle7->cantidad = $request->pago7Cantidad;
+        $pagosDetalle7->concepto = $request->concepto7;
+        $pagosDetalle7->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle7->save();
+      }else if(!$pagosDetalle7 && $request->pago7 == 1){
+        $pagosDetalle7 = new Pagos_detalle();
+        $pagosDetalle7->pago_id = $pago->id;
+        $pagosDetalle7->num_pago = 7;
+        $pagosDetalle7->fecha_pago = $request->pago7Fecha;
+        $pagosDetalle7->cantidad = $request->pago7Cantidad;
+        $pagosDetalle7->concepto = $request->concepto7;
+        $pagosDetalle7->usuario_creo = Auth::user()->id;
+        $pagosDetalle7->save();
+      }
+      if($pagosDetalle8){
+        $pagosDetalle8->fecha_pago = $request->pago8Fecha;
+        $pagosDetalle8->cantidad = $request->pago8Cantidad;
+        $pagosDetalle8->concepto = $request->concepto8;
+        $pagosDetalle8->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle8->save();
+      }else if(!$pagosDetalle8 && $request->pago8 == 1){
+        $pagosDetalle8 = new Pagos_detalle();
+        $pagosDetalle8->pago_id = $pago->id;
+        $pagosDetalle8->num_pago = 8;
+        $pagosDetalle8->fecha_pago = $request->pago8Fecha;
+        $pagosDetalle8->cantidad = $request->pago8Cantidad;
+        $pagosDetalle8->concepto = $request->concepto8;
+        $pagosDetalle8->usuario_creo = Auth::user()->id;
+        $pagosDetalle8->save();
+      }
+      if($pagosDetalle9){
+        $pagosDetalle9->fecha_pago = $request->pago9Fecha;
+        $pagosDetalle9->cantidad = $request->pago9Cantidad;
+        $pagosDetalle9->concepto = $request->concepto9;
+        $pagosDetalle9->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle9->save();
+      }else if(!$pagosDetalle9 && $request->pago9 == 1){
+        $pagosDetalle9 = new Pagos_detalle();
+        $pagosDetalle9->pago_id = $pago->id;
+        $pagosDetalle9->num_pago = 9;
+        $pagosDetalle9->fecha_pago = $request->pago9Fecha;
+        $pagosDetalle9->cantidad = $request->pago9Cantidad;
+        $pagosDetalle9->concepto = $request->concepto9;
+        $pagosDetalle9->usuario_creo = Auth::user()->id;
+        $pagosDetalle9->save();
+      }
+      if($pagosDetalle10){
+        $pagosDetalle10->fecha_pago = $request->pago10Fecha;
+        $pagosDetalle10->cantidad = $request->pago10Cantidad;
+        $pagosDetalle10->concepto = $request->concepto10;
+        $pagosDetalle10->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle10->save();
+      }else if(!$pagosDetalle10 && $request->pago10 == 1){
+        $pagosDetalle10 = new Pagos_detalle();
+        $pagosDetalle10->pago_id = $pago->id;
+        $pagosDetalle10->num_pago = 10;
+        $pagosDetalle10->fecha_pago = $request->pago10Fecha;
+        $pagosDetalle10->cantidad = $request->pago10Cantidad;
+        $pagosDetalle10->concepto = $request->concepto10;
+        $pagosDetalle10->usuario_creo = Auth::user()->id;
+        $pagosDetalle10->save();
+      }
+      if($pagosDetalle11){
+        $pagosDetalle11->fecha_pago = $request->pago11Fecha;
+        $pagosDetalle11->cantidad = $request->pago11Cantidad;
+        $pagosDetalle11->concepto = $request->concepto11;
+        $pagosDetalle11->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle11->save();
+      }else if(!$pagosDetalle11 && $request->pago11 == 1){
+        $pagosDetalle11 = new Pagos_detalle();
+        $pagosDetalle11->pago_id = $pago->id;
+        $pagosDetalle11->num_pago = 1;
+        $pagosDetalle11->fecha_pago = $request->pago11Fecha;
+        $pagosDetalle11->cantidad = $request->pago11Cantidad;
+        $pagosDetalle11->concepto = $request->concepto11;
+        $pagosDetalle11->usuario_creo = Auth::user()->id;
+        $pagosDetalle11->save();
+      }
+      if($pagosDetalle12){
+        $pagosDetalle12->fecha_pago = $request->pago12Fecha;
+        $pagosDetalle12->cantidad = $request->pago12Cantidad;
+        $pagosDetalle12->concepto = $request->concepto12;
+        $pagosDetalle12->ultimo_usuario_modifico = Auth::user()->id;
+        $pagosDetalle12->save();
+      }else if(!$pagosDetalle12 && $request->pago12 == 1){
+        $pagosDetalle12 = new Pagos_detalle();
+        $pagosDetalle12->pago_id = $pago->id;
+        $pagosDetalle12->num_pago = 12;
+        $pagosDetalle12->fecha_pago = $request->pago12Fecha;
+        $pagosDetalle12->cantidad = $request->pago12Cantidad;
+        $pagosDetalle12->concepto = $request->concepto1;
+        $pagosDetalle12->usuario_creo = Auth::user()->id;
+        $pagosDetalle12->save();
+      }
 
       $pago ->pagosrealizados = count(Pagos_detalle::where('pago_id',$pago->id)->where('cantidad','>',0)->get());
       $pago ->pagoinicial = $request->pagoInicial;
       $pago ->numeropagos = $request->numPagos;
 
       $pago ->save();
-
-
-
-
-
-              return redirect('cliente');
+      return redirect('cliente');
     }
 
     /**

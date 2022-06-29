@@ -197,8 +197,6 @@
               @endif
             </div>
 
-
-
            <div class="col-md-3">
               <label> Concepto pago 2</label>
               @if($pagosDetalle2)
@@ -207,8 +205,6 @@
               <textarea id="concepto2" name="concepto2"></textarea>
               @endif
             </div>
-
-
 
             <div class="col-md-3">
               <label> Concepto pago 3</label>
@@ -219,8 +215,6 @@
               @endif
             </div>
 
-
-
             <div class="col-md-3">
               <label> Concepto pago 4</label>
               @if($pagosDetalle4)
@@ -230,6 +224,395 @@
               @endif
             </div>
 
+            <!--A partir de aquí si son 12 pagos, apareceran los 8 conceptos restantes-->
+
+            @if($pagos->numeropagos == 12)
+            <div class="col-md-3">
+              <br>
+              <label for="pago5FechaPropuesta">Fecha que debe pagar el pago 5</label>
+              @if($pagosFecha5)
+              <input id="pago5FechaPropuesta" type="date" class="form-control" name="pago5FechaPropuesta" value="{{$pagosFecha5->fecha_pago}}">
+              @else
+              <input id="pago5FechaPropuesta" type="date" class="form-control" name="pago5FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <br>
+              <label for="pago6FechaPropuesta">Fecha que debe pagar el pago 6</label>
+              @if($pagosFecha6)
+              <input id="pago6FechaPropuesta" type="date" class="form-control" name="pago6FechaPropuesta" value="{{$pagosFecha6->fecha_pago}}">
+              @else
+              <input id="pago6FechaPropuesta" type="date" class="form-control" name="pago6FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <br>
+              <label for="pago7FechaPropuesta">Fecha que debe pagar el pago 7</label>
+              @if($pagosFecha7)
+              <input id="pago7FechaPropuesta" type="date" class="form-control" name="pago7FechaPropuesta" value="{{$pagosFecha7->fecha_pago}}">
+              @else
+              <input id="pago7FechaPropuesta" type="date" class="form-control" name="pago7FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <br>
+              <label for="pago8FechaPropuesta">Fecha que debe pagar el pago 8</label>
+              @if($pagosFecha8)
+              <input id="pago8FechaPropuesta" type="date" class="form-control" name="pago8FechaPropuesta" value="{{$pagosFecha8->fecha_pago}}">
+              @else
+              <input id="pago8FechaPropuesta" type="date" class="form-control" name="pago8FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago5">Pago 5 realizado</label>
+              <select id="pago5" name="pago5" class="form-control">
+
+                @if($pagosDetalle5)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago6">Pago 6 realizado</label>
+              <select id="pago6" name="pago6" class="form-control">
+
+                @if($pagosDetalle6)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago7">Pago 7 realizado</label>
+              <select id="pago7" name="pago7" class="form-control">
+
+                @if($pagosDetalle7)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago8">Pago 8 realizado</label>
+              <select id="pago8" name="pago8" class="form-control">
+
+                @if($pagosDetalle8)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago5Fecha">Fecha que realiza el pago 5</label>
+              @if($pagosDetalle5)
+              <input id="pago5Fecha" type="date" class="form-control" name="pago5Fecha" value="{{$pagosDetalle5->fecha_pago}}">
+              @else
+              <input id="pago5Fecha" type="date" class="form-control" name="pago5Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago6Fecha">Fecha que realiza el pago 6</label>
+              @if($pagosDetalle6)
+              <input id="pago6Fecha" type="date" class="form-control" name="pago6Fecha" value="{{$pagosDetalle6->fecha_pago}}">
+              @else
+              <input id="pago6Fecha" type="date" class="form-control" name="pago6Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago7Fecha">Fecha que realiza el pago 7</label>
+              @if($pagosDetalle7)
+              <input id="pago7Fecha" type="date" class="form-control" name="pago7Fecha" value="{{$pagosDetalle7->fecha_pago}}">
+              @else
+              <input id="pago7Fecha" type="date" class="form-control" name="pago7Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago8Fecha">Fecha que realiza el pago 8</label>
+              @if($pagosDetalle8)
+              <input id="pago8Fecha" type="date" class="form-control" name="pago8Fecha" value="{{$pagosDetalle8->fecha_pago}}">
+              @else
+              <input id="pago8Fecha" type="date" class="form-control" name="pago8Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago5Cantidad">Cantidad pagada del pago 5</label>
+              @if($pagosDetalle5)
+              <input id="pago5Cantidad" type="number" min="0" class="form-control" name="pago5Cantidad" value="{{$pagosDetalle5->cantidad}}">
+              @else
+              <input id="pago5Cantidad" type="number" class="form-control" min="0" name="pago5Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago6Cantidad">Cantidad pagada del pago 6</label>
+              @if($pagosDetalle6)
+              <input id="pago6Cantidad" type="number" min="0" class="form-control" name="pago6Cantidad" value="{{$pagosDetalle6->cantidad}}">
+              @else
+              <input id="pago6Cantidad"type="number" min="0" class="form-control" name="pago6Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago7Cantidad">Cantidad pagada del pago 7</label>
+              @if($pagosDetalle7)
+              <input id="pago7Cantidad" type="number" min="0" class="form-control" name="pago7Cantidad" value="{{$pagosDetalle7->cantidad}}">
+              @else
+              <input id="pago7Cantidad"type="number" min="0" class="form-control" name="pago7Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago8Cantidad">Cantidad pagada del pago 8</label>
+              @if($pagosDetalle8)
+              <input id="pago8Cantidad" type="number" min="0" class="form-control" name="pago8Cantidad" value="{{$pagosDetalle8->cantidad}}">
+              @else
+              <input id="pago8Cantidad" type="number" min="0" class="form-control" name="pago8Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label> Concepto pago 5</label>
+              @if($pagosDetalle5)
+              <textarea id="concepto5" name="concepto5">{{$pagosDetalle5->concepto}}</textarea>
+              @else
+              <textarea id="concepto5" name="concepto5"></textarea>
+              @endif
+            </div>
+
+           <div class="col-md-3">
+              <label> Concepto pago 6</label>
+              @if($pagosDetalle6)
+              <textarea id="concepto6" name="concepto6">{{$pagosDetalle6->concepto}}</textarea>
+              @else
+              <textarea id="concepto6" name="concepto6"></textarea>
+              @endif
+            </div>
+
+            <div class="col-md-3">
+              <label> Concepto pago 7</label>
+              @if($pagosDetalle7)
+              <textarea id="concepto7" name="concepto7">{{$pagosDetalle7->concepto}}</textarea>
+              @else
+              <textarea id="concepto7" name="concepto7"></textarea>
+              @endif
+            </div>
+
+            <div class="col-md-3">
+              <label> Concepto pago 8</label>
+              @if($pagosDetalle8)
+              <textarea id="concepto8" name="concepto8">{{$pagosDetalle8->concepto}}</textarea>
+              @else
+              <textarea id="concepto8" name="concepto8"></textarea>
+              @endif
+            </div>
+
+            <div class="col-md-3">
+              <br>
+              <label for="pago9FechaPropuesta">Fecha que debe pagar el pago 9</label>
+              @if($pagosFecha9)
+              <input id="pago9FechaPropuesta" type="date" class="form-control" name="pago9FechaPropuesta" value="{{$pagosFecha9->fecha_pago}}">
+              @else
+              <input id="pago9FechaPropuesta" type="date" class="form-control" name="pago9FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <br>
+              <label for="pago10FechaPropuesta">Fecha que debe pagar el pago 10</label>
+              @if($pagosFecha10)
+              <input id="pago10FechaPropuesta" type="date" class="form-control" name="pago10FechaPropuesta" value="{{$pagosFecha10->fecha_pago}}">
+              @else
+              <input id="pago10FechaPropuesta" type="date" class="form-control" name="pago10FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <br>
+              <label for="pago11FechaPropuesta">Fecha que debe pagar el pago 11</label>
+              @if($pagosFecha11)
+              <input id="pago11FechaPropuesta" type="date" class="form-control" name="pago11FechaPropuesta" value="{{$pagosFecha11->fecha_pago}}">
+              @else
+              <input id="pago11FechaPropuesta" type="date" class="form-control" name="pago11FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <br>
+              <label for="pago12FechaPropuesta">Fecha que debe pagar el pago 12</label>
+              @if($pagosFecha12)
+              <input id="pago12FechaPropuesta" type="date" class="form-control" name="pago12FechaPropuesta" value="{{$pagosFecha12->fecha_pago}}">
+              @else
+              <input id="pago12FechaPropuesta" type="date" class="form-control" name="pago12FechaPropuesta" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago9">Pago 9 realizado</label>
+              <select id="pago9" name="pago9" class="form-control">
+
+                @if($pagosDetalle9)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago10">Pago 10 realizado</label>
+              <select id="pago10" name="pago10" class="form-control">
+
+                @if($pagosDetalle10)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago11">Pago 11 realizado</label>
+              <select id="pago11" name="pago11" class="form-control">
+
+                @if($pagosDetalle11)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago12">Pago 12 realizado</label>
+              <select id="pago12" name="pago12" class="form-control">
+
+                @if($pagosDetalle12)
+                <option value="0"> No</option>
+                <option selected="" value="1"> Si</option>
+                @else
+                <option value="0"> No</option>
+                <option value="1"> Si</option>
+                @endif
+
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="pago9Fecha">Fecha que realiza el pago 9</label>
+              @if($pagosDetalle9)
+              <input id="pago9Fecha" type="date" class="form-control" name="pago9Fecha" value="{{$pagosDetalle9->fecha_pago}}">
+              @else
+              <input id="pago9Fecha" type="date" class="form-control" name="pago9Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago10Fecha">Fecha que realiza el pago 10</label>
+              @if($pagosDetalle10)
+              <input id="pago10Fecha" type="date" class="form-control" name="pago10Fecha" value="{{$pagosDetalle10->fecha_pago}}">
+              @else
+              <input id="pago10Fecha" type="date" class="form-control" name="pago10Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago11Fecha">Fecha que realiza el pago 11</label>
+              @if($pagosDetalle11)
+              <input id="pago11Fecha" type="date" class="form-control" name="pago11Fecha" value="{{$pagosDetalle11->fecha_pago}}">
+              @else
+              <input id="pago11Fecha" type="date" class="form-control" name="pago11Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago12Fecha">Fecha que realiza el pago 12</label>
+              @if($pagosDetalle12)
+              <input id="pago12Fecha" type="date" class="form-control" name="pago12Fecha" value="{{$pagosDetalle12->fecha_pago}}">
+              @else
+              <input id="pago12Fecha" type="date" class="form-control" name="pago12Fecha" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago9Cantidad">Cantidad pagada del pago 9</label>
+              @if($pagosDetalle9)
+              <input id="pago9Cantidad" type="number" min="0" class="form-control" name="pago9Cantidad" value="{{$pagosDetalle9->cantidad}}">
+              @else
+              <input id="pago9Cantidad" type="number" class="form-control" min="0" name="pago9Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago10Cantidad">Cantidad pagada del pago 10</label>
+              @if($pagosDetalle10)
+              <input id="pago10Cantidad" type="number" min="0" class="form-control" name="pago10Cantidad" value="{{$pagosDetalle10->cantidad}}">
+              @else
+              <input id="pago10Cantidad"type="number" min="0" class="form-control" name="pago10Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago11Cantidad">Cantidad pagada del pago 11</label>
+              @if($pagosDetalle11)
+              <input id="pago11Cantidad" type="number" min="0" class="form-control" name="pago11Cantidad" value="{{$pagosDetalle11->cantidad}}">
+              @else
+              <input id="pago11Cantidad"type="number" min="0" class="form-control" name="pago11Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label for="pago12Cantidad">Cantidad pagada del pago 12</label>
+              @if($pagosDetalle12)
+              <input id="pago12Cantidad" type="number" min="0" class="form-control" name="pago12Cantidad" value="{{$pagosDetalle12->cantidad}}">
+              @else
+              <input id="pago12Cantidad" type="number" min="0" class="form-control" name="pago12Cantidad" value="">
+              @endif
+            </div>
+            <div class="col-md-3">
+              <label> Concepto pago 9</label>
+              @if($pagosDetalle9)
+              <textarea id="concepto9" name="concepto9">{{$pagosDetalle9->concepto}}</textarea>
+              @else
+              <textarea id="concepto9" name="concepto9"></textarea>
+              @endif
+            </div>
+
+           <div class="col-md-3">
+              <label> Concepto pago 10</label>
+              @if($pagosDetalle10)
+              <textarea id="concepto10" name="concepto10">{{$pagosDetalle10->concepto}}</textarea>
+              @else
+              <textarea id="concepto10" name="concepto10"></textarea>
+              @endif
+            </div>
+
+            <div class="col-md-3">
+              <label> Concepto pago 11</label>
+              @if($pagosDetalle11)
+              <textarea id="concepto11" name="concepto11">{{$pagosDetalle11->concepto}}</textarea>
+              @else
+              <textarea id="concepto11" name="concepto11"></textarea>
+              @endif
+            </div>
+
+            <div class="col-md-3">
+              <label> Concepto pago 12</label>
+              @if($pagosDetalle12)
+              <textarea id="concepto12" name="concepto12">{{$pagosDetalle12->concepto}}</textarea>
+              @else
+              <textarea id="concepto12" name="concepto12"></textarea>
+              @endif
+            </div>
+            @endif
+
+            <!--Aquí termina-->
 
              <div class="col-md-12">
               <br>
@@ -293,11 +676,13 @@
               <label for="plazo">Plazo</label>
               <select id="plazo" name="plazo" class="form-control">
                 @if($cliente->plazo <1)
+                <option value="0.1">1 mes</option>
                 <option value="0.5">6 meses</option>
                 @else
 
                 <option value="{{$cliente->plazo}}">{{$cliente->plazo}} año</option>
                 @endif
+                <option value="0.1">1 mes</option>
                 <option value="0.5">6 meses</option>
                 <option value="1">1 año</option>
                 <option value="2">2 año</option>
@@ -363,7 +748,7 @@
                 @endif
           </select>
             </div>
-                {{--<div class="col-md-4">
+            <div class="col-md-4">
               <label for="navideno">Navideño</label>
               <select id="navideno" name="navideno" class="form-control">
                 @if($cliente->navidena == '0')
@@ -372,11 +757,9 @@
                 @else
                   <option value="0">No</option>
                   <option selected=""  value="1">Si</option>
-
                 @endif
           </select>
             </div>
-            --}}
             <div class="col-md-4">
               <label for="plazo de pagos">Plazo de pagos</label>
               <select id="plazoP" name="plazoP" class="form-control">
@@ -384,22 +767,30 @@
                 <option value="1">De contado</option>
                 <option value="3">3 pagos</option>
                 <option value="4">4 pagos</option>
+                <option value="12">12 pagos</option>
                 @elseif($pagos->numeropagos == 3)
                 <option value="1">De contado</option>
                 <option selected value="3">3 pagos</option>
-                <option  value="4">4 pagos</option>
+                <option value="4">4 pagos</option>
+                <option value="12">12 pagos</option>
+                @elseif($pagos->numeropagos == 12)
+                <option value="1">De contado</option>
+                <option value="3">3 pagos</option>
+                <option value="4">4 pagos</option>
+                <option selected value="12">12 pagos</option>
                 @else
                 <option value="1">De contado</option>
-                <option  value="3">3 pagos</option>
+                <option value="3">3 pagos</option>
                 <option selected value="4">4 pagos</option>
+                <option value="12">12 pagos</option>
                 @endif
 
           </select>
             </div>
-                     <div class="col-md-12">
-              <label for="observaciones">Observaciones - Sale en poliza</label>
-             <textarea class="form-control notemptyField" rows="5" id="observaciones" name="observaciones"  >{{$cliente->observaciones}}</textarea>
-            </div>
+              <div class="col-md-12">
+                <label for="observaciones">Observaciones - Sale en poliza</label>
+                <textarea class="form-control notemptyField" rows="5" id="observaciones" name="observaciones"  >{{$cliente->observaciones}}</textarea>
+              </div>
             <div class="col-md-4">
               <label for="nombre">Nombre</label>
               <input id="nombre" type="text" placeholder="Nombre" class="form-control" name="nombre" value="{{$cliente->contrato->nombres}}" required autofocus maxlength="30">

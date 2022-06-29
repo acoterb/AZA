@@ -65,6 +65,7 @@
               <div class="col-md-4">
               <label for="plazo">Plazo</label>
               <select id="plazo" name="plazo" class="form-control">
+                <option value="0.1">1 mes</option>
                 <option value="0.5">6 meses</option>
                 <option value="1">1 año</option>
                 <option value="2">2 año</option>
@@ -91,22 +92,23 @@
                 <option value="Atrasado">Atrasado</option>
                 <option value="Cancelado">Cancelado</option>
 
-          </select>
+              </select>
             </div>
-                {{--<div class="col-md-4">
+            <div class="col-md-4">
               <label for="navideno">Navideño</label>
               <select id="navideno" name="navideno" class="form-control">
                 <option value="0">No</option>
                 <option value="1">Si</option>
-          </select>
-            </div>--}}
+              </select>
+            </div>
             <div class="col-md-4">
               <label for="plazo de pagos">Plazo de pagos</label>
               <select id="plazoP" name="plazoP" class="form-control">
                 <option value="1">De contado</option>
                 <option value="3">3 pagos</option>
                 <option selected value="4">4 pagos</option>
-          </select>
+                <option value="12">12 pagos</option>
+              </select>
             </div>
             <div class="col-md-4">
               <label for="precio">Precio</label>
@@ -114,7 +116,7 @@
             </div>
             <div class="col-md-12">
               <label for="observaciones">Observaciones - Sale en poliza</label>
-             <textarea class="form-control notemptyField" rows="5" id="observaciones" name="observaciones" ></textarea>
+              <textarea class="form-control notemptyField" rows="5" id="observaciones" name="observaciones" ></textarea>
             </div>
             <div class="col-md-4">
               <label for="nombre">Nombre</label>
