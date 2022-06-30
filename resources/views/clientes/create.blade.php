@@ -94,6 +94,7 @@
 
               </select>
             </div>
+            {{--
             <div class="col-md-4">
               <label for="navideno">Navideño</label>
               <select id="navideno" name="navideno" class="form-control">
@@ -101,6 +102,7 @@
                 <option value="1">Si</option>
               </select>
             </div>
+            --}}
             <div class="col-md-4">
               <label for="plazo de pagos">Plazo de pagos</label>
               <select id="plazoP" name="plazoP" class="form-control">

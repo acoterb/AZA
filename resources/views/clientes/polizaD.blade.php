@@ -47,14 +47,14 @@
   </tr>
 
     <tr>
-    <td style="position: absolute;left: 25%;top: 55%;"><b>{{money_format('%n', $pagos->costoservicio)}}</b></td>
+    <td style="position: absolute;left: 25%;top: 55%;"><b>{{$pagos->costoservicio}}</b></td>
     <td style="position: absolute;left: 50%;top: 55%;"><b>{{date("d/m/Y", strtotime($pagos->pagoinicial))}}</b></td>
     <td style="position: absolute;left: 82%;top: 55%;"><b>{{$pagos->forma_pago}}</b></td>
     
-    <td style="position: absolute;left: 33%;top: 57.5%;"><b>@if($pagos->numeropagos == 4)4 pagos de $870 @elseif($pagos->numeropagos == 1) 1 pago de $3,480 @else 3 pagos de $1,160  @endif</b></td>
+    <td style="position: absolute;left: 33%;top: 57.5%;"><b>@if($pagos->numeropagos == 4)4 pagos de $870 @elseif($pagos->numeropagos == 1) 1 pago de $3,480 @elseif($pagos->numeropagos == 3) 3 pagos de $1,160  @else 12 pagos de $289 @endif</b></td>
   </tr>
   <tr>
-    <td style="position: absolute;left: 14%;top: 88%;"><b>@if($contrato->plazo <1)6 MESES @else {{$contrato->plazo}} AÑOS @endif</b></td>
+    <td style="position: absolute;left: 14%;top: 88%;"><b>@if($contrato->plazo == '0.5')6 MESES @elseif($contrato->plazo == '0.1')1 MES @else {{$contrato->plazo}} AÑOS @endif</b></td>
     <td style="position: absolute;left: 45%;top: 88%;"><b>{{ date("d/m/Y", strtotime($contrato->desde))}}</b></td>
     <td style="position: absolute;left: 78%;top: 88%;"><b>{{ date("d/m/Y", strtotime($contrato->hasta))}}</b></td>
   </tr>
