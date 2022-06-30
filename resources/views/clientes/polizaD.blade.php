@@ -48,7 +48,11 @@
 
     <tr>
     <td style="position: absolute;left: 25%;top: 55%;"><b>{{money_format('%n', $pagos->costoservicio)}}</b></td>
+    @if($contrato->plazo == '0.1')
+      <td style="position: absolute;left: 50%;top: 55%;"><b>{{date("d/m/Y", strtotime($contrato->desde))}}</b></td>
+    @else
     <td style="position: absolute;left: 50%;top: 55%;"><b>{{date("d/m/Y", strtotime($pagos->pagoinicial))}}</b></td>
+    @endif
     <td style="position: absolute;left: 82%;top: 55%;"><b>{{$pagos->forma_pago}}</b></td>
     
     <td style="position: absolute;left: 33%;top: 57.5%;"><b>@if($pagos->numeropagos == 4)4 pagos de $870 @elseif($pagos->numeropagos == 1) 1 pago de $3,480 @elseif($pagos->numeropagos == 3) 3 pagos de $1,160  @else @endif</b></td>
