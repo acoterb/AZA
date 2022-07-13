@@ -257,9 +257,10 @@ class ClientesController extends Controller
           $vehiculo = Vehiculos::where('id',$contrato->vehiculo_id)->first();
           $licencia = Licencia::where('id',$contrato->licencia_id)->first();
           $pagos = Pagos::where('contrato_id',$contrato->id)->first();
-
-          $pdf = \PDF::loadView('clientes.poliza_epson230',compact('contrato','direccion','vehiculo','licencia','pagos'));
-            return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+        if($contrato->tipo == "D")
+        {
+            return view('clientes.polizaD2',compact('contrato','direccion','vehiculo','licencia','pagos'));
+        }
 
     }
   public function vehiculo($id)
