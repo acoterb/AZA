@@ -7,6 +7,7 @@
     <th style="position: absolute;left: 50%; top: 1.8%">{{$contrato->hasta}}</th>
     <th style="position: absolute;left: 85%; top: 1.8%">{{$pagos->costoservicio}}</th>
     --}}
+    <th style="position: absolute;left: 82%; top: 3.5%">{{$contrato->poliza}}</th>
     <th style="position: absolute;left: 17%; top: 21.3%">{{$contrato->contrato->nombres}} {{$contrato->contrato->apellidos}}</th>
     <th></th>
     <th style="position: absolute;left: 82%;top: 21%">{{$contrato->contrato->telefono}}</th>

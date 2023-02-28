@@ -767,21 +767,31 @@
                 <option value="1">De contado</option>
                 <option value="3">3 pagos</option>
                 <option value="4">4 pagos</option>
+                <option value="5">5 pagos</option>
                 <option value="12">12 pagos</option>
                 @elseif($pagos->numeropagos == 3)
                 <option value="1">De contado</option>
                 <option selected value="3">3 pagos</option>
                 <option value="4">4 pagos</option>
+                <option value="5">5 pagos</option>
+                <option value="12">12 pagos</option>
+                @elseif($pagos->numeropagos == 5)
+                <option value="1">De contado</option>
+                <option value="3">3 pagos</option>
+                <option value="4">4 pagos</option>
+                <option  selected value="5">5 pagos</option>
                 <option value="12">12 pagos</option>
                 @elseif($pagos->numeropagos == 12)
                 <option value="1">De contado</option>
                 <option value="3">3 pagos</option>
                 <option value="4">4 pagos</option>
+                <option value="5">5 pagos</option>
                 <option selected value="12">12 pagos</option>
                 @else
                 <option value="1">De contado</option>
                 <option value="3">3 pagos</option>
                 <option selected value="4">4 pagos</option>
+                <option value="5">5 pagos</option>
                 <option value="12">12 pagos</option>
                 @endif
 
