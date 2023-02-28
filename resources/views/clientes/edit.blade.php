@@ -226,7 +226,7 @@
 
             <!--A partir de aquí si son 12 pagos, apareceran los 8 conceptos restantes-->
 
-            @if($pagos->numeropagos == 12)
+            @if($pagos->numeropagos == 5)
             <div class="col-md-3">
               <br>
               <label for="pago5FechaPropuesta">Fecha que debe pagar el pago 5</label>
@@ -236,6 +236,11 @@
               <input id="pago5FechaPropuesta" type="date" class="form-control" name="pago5FechaPropuesta" value="">
               @endif
             </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            @endif
+             @if($pagos->numeropagos > 5)
             <div class="col-md-3">
               <br>
               <label for="pago6FechaPropuesta">Fecha que debe pagar el pago 6</label>
@@ -263,6 +268,8 @@
               <input id="pago8FechaPropuesta" type="date" class="form-control" name="pago8FechaPropuesta" value="">
               @endif
             </div>
+            @endif
+            @if($pagos->numeropagos == 5)
             <div class="col-md-3">
               <label for="pago5">Pago 5 realizado</label>
               <select id="pago5" name="pago5" class="form-control">
@@ -277,6 +284,11 @@
 
               </select>
             </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            @endif
+            @if($pagos->numeropagos > 5)
             <div class="col-md-3">
               <label for="pago6">Pago 6 realizado</label>
               <select id="pago6" name="pago6" class="form-control">
@@ -319,6 +331,8 @@
 
               </select>
             </div>
+            @endif
+            @if($pagos->numeropagos == 5)
             <div class="col-md-3">
               <label for="pago5Fecha">Fecha que realiza el pago 5</label>
               @if($pagosDetalle5)
@@ -327,6 +341,11 @@
               <input id="pago5Fecha" type="date" class="form-control" name="pago5Fecha" value="">
               @endif
             </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            @endif
+            @if($pagos->numeropagos > 5)
             <div class="col-md-3">
               <label for="pago6Fecha">Fecha que realiza el pago 6</label>
               @if($pagosDetalle6)
@@ -351,6 +370,8 @@
               <input id="pago8Fecha" type="date" class="form-control" name="pago8Fecha" value="">
               @endif
             </div>
+            @endif
+            @if($pagos->numeropagos == 5)
             <div class="col-md-3">
               <label for="pago5Cantidad">Cantidad pagada del pago 5</label>
               @if($pagosDetalle5)
@@ -359,6 +380,11 @@
               <input id="pago5Cantidad" type="number" class="form-control" min="0" name="pago5Cantidad" value="">
               @endif
             </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            @endif
+            @if($pagos->numeropagos > 5)
             <div class="col-md-3">
               <label for="pago6Cantidad">Cantidad pagada del pago 6</label>
               @if($pagosDetalle6)
@@ -383,6 +409,8 @@
               <input id="pago8Cantidad" type="number" min="0" class="form-control" name="pago8Cantidad" value="">
               @endif
             </div>
+            @endif
+            @if($pagos->numeropagos == 5)
             <div class="col-md-3">
               <label> Concepto pago 5</label>
               @if($pagosDetalle5)
@@ -391,7 +419,11 @@
               <textarea id="concepto5" name="concepto5"></textarea>
               @endif
             </div>
-
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            @endif
+            @if($pagos->numeropagos > 5)
            <div class="col-md-3">
               <label> Concepto pago 6</label>
               @if($pagosDetalle6)
@@ -418,7 +450,8 @@
               <textarea id="concepto8" name="concepto8"></textarea>
               @endif
             </div>
-
+            @endif
+            @if($pagos->numeropagos > 8)
             <div class="col-md-3">
               <br>
               <label for="pago9FechaPropuesta">Fecha que debe pagar el pago 9</label>
